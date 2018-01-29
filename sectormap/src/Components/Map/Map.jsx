@@ -1,7 +1,5 @@
 /* global google */ 
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import {withScriptjs,
   withGoogleMap,
   GoogleMap} from 'react-google-maps';
@@ -83,7 +81,7 @@ render()
         <SearchBox  controlPosition={1} onPlacesChanged={this.onPlacesChanged} ref={this.onSearchBoxMounted}>
         <input
         type="text"
-        placeholder="Customized your placeholder"
+        placeholder="Zoek een plaats"
         style={{
           boxSizing: `border-box`,
           border: `1px solid transparent`,

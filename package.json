@@ -4,7 +4,9 @@
   "description": "sectormap",
   "main": "index.js",
   "dependencies": {
-    "create-react-app": "^1.5.1"
+    "create-react-app": "^1.5.1",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0"
   },
   "devDependencies": {},
   "scripts": {
