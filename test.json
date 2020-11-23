@@ -1,0 +1,93 @@
+{
+	"solutionName": "solution",
+	"stages": {
+		"dev": {
+			"libraryGroups": [
+				"mylib1",
+				"mylib2"
+			],
+			"paramsTemplate": {
+				"databases": {
+					"type": "Object",
+					"value": {
+						"db1": {
+							"name": "db1",
+							"serverName": "db1",
+							"sku": "sku"
+						}
+					}
+				},
+				"functions": {
+					"type": "Object",
+					"value": {
+						"myFunc": {
+							"servicePlanId": "db1"
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"resourceGroups": {
+			"rg1": {
+				"location": "loc"
+			}
+		},
+		"singleApiRegistrations": {
+			"myApi": {
+				"apiType": "wsdl,openapi",
+				"definitionFile": "path to wsdl or openapi",
+				"version": "v1",
+				"apiPath": "apiPath",
+				"requiresSubscription": true,
+				"requiresApproval": true,
+				"products": [
+					"a",
+					"b",
+					"c"
+				],
+				"wsdlServiceName": "required when wsdl",
+				"backendUrl": "backend",
+				"apimName": "apimname",
+				"apimResourceGroup": "apimrg"
+			}
+		},
+		"databases": {
+			"db1": {
+				"server": {
+					"name": "${{db1.serverName}}",
+					"adminUser": "$(SqlAdminUser)",
+					"adminPass": "$(SqlAdminPass)"
+				},
+				"name": "${{db1.name}}",
+				"sku": "${{db1.sku}}",
+			}
+		},
+		"functionApps": {
+			"myFunc": {
+				"location": "loc",
+				"resourceGroup": "rg",
+				"servicePlan": {
+					"useExisting": true,
+					"servicePlanId": "${{functions.myFunc.servicePlanId}}"
+				},
+				"storageAccount": {
+					"name": "name",
+					"sku": "sku",
+					"resourceGroup": "rg"
+				},
+				"connectionStrings": {
+					"bla": {
+						"type": "SqlServer",
+						"value": "$<<databases.db1.connectionString>>"
+					},
+					"bla2": {
+						"type": "Custom",
+						"value": "Somethingsomething"
+					}
+				}
+			}
+		}
+	}
+}
